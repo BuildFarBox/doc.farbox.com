@@ -1,5 +1,8 @@
 Key: doc.farbox.com
 
+Title: FarBox Doc
+
+
 ## About
 
 This is a template for <http://doc.farbox.com>, a site built by about `60 lines` code (in Jade template syntax), but with lots of amazing features.

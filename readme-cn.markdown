@@ -1,5 +1,6 @@
 Key: doc.farbox.com
-Title: ReadMe
+
+Title: FarBox Doc
 
 ## About
 
