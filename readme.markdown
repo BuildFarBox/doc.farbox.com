@@ -118,14 +118,15 @@ If a directory (displayed in the navigation) has no lading doc in it, the url of
 
 #### codes highlighting
 
-\`\`\`lang
-codes
-\`\`\`
+    ```lang
+    codes
+    ```
 
 #### codes highlighting with lines displayed
-\`\`\`lang:n
-codes
-\`\`\`
+
+    ```lang:n
+    codes
+    ```
 
 
 ### Fulltext Search
