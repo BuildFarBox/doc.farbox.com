@@ -1,0 +1,63 @@
+doctype html
+head
+	title= post.title or site.title
+	load('/template/stylesheets/basic.css /template/stylesheets/main.scss?format=css')
+body
+	docs_path = 'docs/'
+	#sidebar
+		index_posts = get_data(types='post+folder', path=docs_path, min_posts_count=1, level=1, sort='position', limit=100)
+    	ul
+			for i_post in index_posts
+				loop1 = loop
+				if i_post.type == 'folder'
+					if i_post.content
+						li.level_1.directory= a_with_selected('/read/'+i_post.path, i_post.title)
+					else
+						li.level_1.directory
+							a(href='#')= i_post.title
+
+					sub_posts = get_data(type='post', path=i_post.path, sort='position', limit=100)
+					ul
+						for sub_post in sub_posts
+							li.level_2
+								dom_id = 'item-%s-%s'%(loop1.index, loop.index)
+								_sub_post_url = '/read/'+sub_post.url_path
+								sub_post_url = _sub_post_url+'#'+dom_id
+								a_with_selected(sub_post_url, sub_post.title, dom_id=dom_id)
+								if request.path == _sub_post_url and post and post.metadata.toc in [True, 'yes']
+									.toc= post.toc
+				else
+					li.level_1.file= a_with_selected('/read/'+post.url_path, post.title)
+	#search_bar
+		input#search_value(placeholder="Search", type="text", value="{{ request.args.s }}", onkeyup="if (event.keyCode == 13) search();")
+	#main
+		.content_body 
+			if request.args.s
+				h1 Results
+				posts = get_data(type='post', path=docs_path, keywords=request.args.s, sort='position', limit=50)
+				if posts
+					ul.posts_found
+						for post in posts
+							li
+								a(href='/read/{{post.url_path}}')= post.title
+				else
+					p Nothing Found
+			elif request.path == '/'
+				index_doc = get_doc(docs_path)
+				if index_doc and index_doc.content
+					{{ index_doc.content }}
+				else
+					p use <code>index.md</code> for your homepage.
+			else
+				post = post or category
+				if post
+					h1.title= post.title
+					post.content.without_toc
+				else
+					raise_404
+	script(type="text/javascript")
+		function search(){
+            if (document.getElementById('search_value').value){ location.href='http://'+location.host+'?s='+document.getElementById('search_value').value}
+            else{ return false;}
+        }
+        window.onload = function(){ window.scroll(0, 0); }
