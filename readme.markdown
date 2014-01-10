@@ -38,7 +38,7 @@ You can simply create a site folder named a subdomain of `*.farbox.com`, like `t
 
 This is a template with a little code, so, just modify it if you like.
 
-By the way, `FarBox` supports `AutoReload`, no extra tools needed, your website will be live in realtime when you coding the template.
+By the way, `FarBox` supports `AutoReload`, no extra tools needed except `FarBox Editor`, your website will be live in realtime when you coding the template.
 
 
 ### Custom Position.
