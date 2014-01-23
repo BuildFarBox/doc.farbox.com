@@ -1,4 +1,4 @@
-mixin sidebar(docs_path)
+mixin no_cache_sidebar(docs_path)
 	#sidebar
 		index_posts = get_data(types='post+folder', path=docs_path, min_posts_count=1, level=1, sort='position', limit=100)
 		ul

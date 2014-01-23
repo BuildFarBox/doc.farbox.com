@@ -4,8 +4,8 @@ head
 	load('/template/stylesheets/basic.css /template/stylesheets/main.scss?format=css')
 body
 	docs_path = 'docs/'
-	{% from 'mixins' import sidebar %}
-	{{ sidebar(docs_path) }}
+	{% from 'mixins' import no_cache_sidebar %}
+	{{ no_cache_sidebar(docs_path) }}
 	#main
 		.content_body 
 			if request.args.s
