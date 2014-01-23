@@ -17,7 +17,7 @@ If you installed the APP from FarBox named `FarBox Editor`, you can also export 
 ### Install
 
 1. make sure you had an account in `farbox.com`, which means installed a Dropbox APP named `FarBox`
-2. put `stylesheets` and `index+read.jade` into the `<your site folder in FarBox>/template`
+2. copy the `template` folder into the `<your site folder in FarBox>`
 3. visit your site, and waiting (less than 2 minutes) the files to be synced from Dropbox to FarBox.
 
 ### Run
