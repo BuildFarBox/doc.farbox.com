@@ -1,15 +1,14 @@
 $bg-color: #fff;
-$main_color: #DC5863;
 
+$sidebar_a_color: #1892d1;
+$red_color: #DC5863;/*#DC5863*/
 $sidebar_width: 265px;
-$sidebar_bg: #ebf0fa; /*#ebf0fa;*/
 $border_color: #e8e8e8; /*#e8e8e8*/
-$menu1_bg: #313645;/*#313645*/
-$selected_color: $main_color;
+$selected_color: $red_color;
 
 
 body {
-    font-family: 'Helvetica Neue', Arial, "Hiragino Sans GB", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, 'Microsoft YaHei', sans-serif;
     -webkit-text-size-adjust: none;
     word-wrap:break-word;
     font-size: 14px;
@@ -21,46 +20,20 @@ body {
 }
 
 
-#slogan {
-    margin-top: 150px;
-    letter-spacing: 5px;
-    font-size: 48px;
-    font-weight: normal;
-    text-align: center;
-    font-family: sans-serif;
-    line-height: 2.9;
-    small{
-        font-size: 10px;
-	    letter-spacing: 0;
-	    color: #666;
-	    font-weight:normal;
-    }
-    a{
-        letter-spacing: 1px;
-        font-size: 10px;
-        text-decoration: none;
-        margin-left:10px;
-
-        &:hover{
-            text-decoration: underline;
-        }
-    }
-}
-
-
 #sidebar {
     position: fixed;
     width: $sidebar_width;
     z-index: 2;
-    top: 0;
+    top: 2px;
     bottom: 0;
     left: 0;
     overflow-x: hidden;
     overflow-y: scroll;
     text-shadow: 0 1px rgba(white, .3);
-    background: $sidebar_bg;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none; // IE 10 doesn't support pointer-events
+    letter-spacing: 1px;
+    border-right: 1px dotted $border_color;
 
     /*the scrollbar*/
     &::-webkit-scrollbar {
@@ -94,7 +67,6 @@ body {
             list-style: none;
 
             a{
-                color: #333;
                 padding: 6px 30px;
 
                 outline: none;
@@ -118,9 +90,13 @@ body {
                 font-size: 16px;
                 line-height: 2.5;
                 text-align: center;
-                color: #fff;
+                border-top: 1px solid $border_color;
+                border-bottom: 1px solid $border_color;
 
-                background-color: $menu1_bg;
+                &:hover{
+                    background: #f7f7f7;
+                }
+
 
             }
         }
@@ -130,33 +106,28 @@ body {
 
         .toc{
             line-height: 1.5;
-            background: #f8f7e9;
+            background: #fefcf6;
 
             li {
-                line-height: 1.8;
 
                 a {
-                    font-size: 14px;
-                    font-weight: bold;
-                    color: #000;
+                    font-size: 12px;
                     &:before {
                         content: '> ';
                         margin-left: -0.8em;
                     }
 
-                    &:hover {
-                        background: $selected_color;
-                        color: #fff;
+                    &:hover, &:active, &:focus {
+                        background: #f7f7f7;
                     }
 
                 }
 
                 li {
-
+                    line-height: 1.3;
                     a {
                         font-size: 12px;
                         font-weight: normal;
-                        color: #555;
                         padding-left: 3.0em;
                         background: none;
                         border: none;
@@ -179,13 +150,12 @@ body {
 
     a{
         display: block;
-        border-bottom: 1px solid $border_color;
+        color: $sidebar_a_color;
         text-decoration: none;
 
         &:hover, &.selected{
-            background: $selected_color;
-            color: #fff;
             outline: none;
+            color: darken($sidebar_a_color, 20%);
         }
     }
 
@@ -219,34 +189,38 @@ body {
 
 .content_body{
     padding: 0 2.5em 3.5em 2.5em;
+    line-height: 2.5;
+
 
     h1{
-        font-size: 2.5em;
-        color: $main_color;
+        font-size: 2.2em;
+        color: #111;
+        padding: 0 0.5em;
+        background: #f4f4f4;
+        margin-left: -0.5em;
     }
 
     h1.title{
-        font-size: 2.9em;
+        font-size: 2.5em;
         line-height: 1.7em;
         margin: 0.2em -0.2em -0.2em -0.2em;
         color: #111;
-        border-bottom: 1px solid #ccc;
+        background: none;
+        padding: 0;
     }
 
     h2{
-        color: $main_color;
+        color: #333;
+        font-size: 1.7em;
         line-height: 1.25em;
-        margin: 2em 0 1em -0.5em;
-        padding: .35em .5em;
-        font-size: 1.5em;
+        margin: 1.3em 0 0 -0.5em;
+        padding: 1.5em 0.5em .5em .5em;
         overflow: hidden;
         text-shadow: 0 1px rgba(255,255,255,0.3);
-        background: -webkit-linear-gradient(top, #f7f7fa, #f0f0f2);
-        background: linear-gradient(to bottom, #f7f7fa, #f0f0f2);
-        border: 1px solid;
-        border-color: #d5d5d5 #d5d5d5 #d1d1d1;
-        border-radius: 3px;
-        box-shadow: inset 0 1px rgba(255,255,255,0.3),inset 0 0 0 1px rgba(255,255,255,0.2),0 1px 1px rgba(0,0,0,0.04);
+        font-weight: normal;
+
+        border-top: 1px solid $border_color;
+
     }
 
     h3{
@@ -258,15 +232,23 @@ body {
             content: ">"
         }
         margin-left: 0.3em;
-        color: $main_color;
+        color: $sidebar_a_color;
     }
 
     a{
-        color: cornflowerblue;
+        color: #111;
+        border-bottom: 1px dotted #111;
+        text-decoration: none;
         &:hover{
-            color: $main_color;
+            color: $red_color;
+            border-bottom: 1px dotted $red_color;
         }
     }
+
+    h2, h3, h4, h5{
+        text-rendering: optimizeLegibility;
+    }
+
 }
 
 
