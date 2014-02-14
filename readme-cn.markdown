@@ -17,13 +17,14 @@ Title: FarBox Doc
 ### 安装
 
 1. 确保你已经拥有了`farbox.com`的账户，这意味着你的Dropbox已经安装了一个名为`FarBox`的APP.
-2. 将`template`目录放入 `<your site folder in FarBox>`的文件夹中.
-3. 访问你的网站，等待(最多不超过2分钟), 你的文件将会从Dropbox同步到FarBox.
+2. 将`template`目录放入 `<your site folder named in Domain format>`的站点文件夹（即FarBox的一个二级目录）中.
+3. 登录farbox.com, 你将看到自己新创建出来的网站.
 
 ### 运行
 
 1. 将你的文档文件放入`docs`这个文件夹.
 2. 在`docs`这个目录中增加`index.txt(/.md/.mk/.markdown)`，可以生成网站的Homepage.
+3. 确保`docs`目录内的各个文件夹内有文档，否则将不会加入导航.
 
 
 ## 特性

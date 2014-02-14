@@ -17,13 +17,14 @@ If you installed the APP from FarBox named `FarBox Editor`, you can also export 
 ### Install
 
 1. make sure you had an account in `farbox.com`, which means installed a Dropbox APP named `FarBox`
-2. copy the `template` folder into the `<your site folder in FarBox>`
-3. visit your site, and waiting (less than 2 minutes) the files to be synced from Dropbox to FarBox.
+2. copy the `template` folder into the site folder `<your site folder named in Domain format>` (also a sub folder of FarBox).
+3. login into farbox.com, you will find the site you created.
 
 ### Run
-
-1. put your documents into the `docs` directory
-2. put a `index.txt(/.md/.mk/.markdown)` into the `docs` directory to create homepage
+.
+1. put your documents into the `docs` directory.
+2. put a `index.txt(/.md/.mk/.markdown)` into the `docs` directory to create homepage.
+3. make sure there must be some documents in the directories of `docs`, otherwise, the navigation will be incomplete.
 
 
 ## Features
