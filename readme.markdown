@@ -21,7 +21,7 @@ If you installed the APP from FarBox named `FarBox Editor`, you can also export 
 3. login into farbox.com, you will find the site you created.
 
 ### Run
-.
+
 1. put your documents into the `docs` directory.
 2. put a `index.txt(/.md/.mk/.markdown)` into the `docs` directory to create homepage.
 3. make sure there must be some documents in the directories of `docs`, otherwise, the navigation will be incomplete.
