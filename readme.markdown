@@ -110,6 +110,11 @@ If you open the url of a document, the Navigation will scroll to the item which 
 
 If a directory (displayed in the navigation) has no lading doc in it, the url of this directory will be `#`.
 
+**Notices**
+
+1. If a folder to be a sub menu, make sure there are some articles in it, except `index.md`
+2. If a article to be a sub menu, just put it into the `docs` folder.
+
 
 ### Supports markdown
 
