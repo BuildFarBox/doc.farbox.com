@@ -27,6 +27,6 @@ mixin make_sidebar(docs_path)
 										.toc.hidden= sub_post.toc
 				else
 					li.level_1.file
-						a_with_selected(read_prefix+post.url_path, post.title)
+						a_with_selected(read_prefix+i_post.url_path, i_post.title)
 	#search_bar
 		input#search_value(placeholder="Search", type="text", value="{{ request.args.s }}", onkeyup="if (event.keyCode == 13) search();")
