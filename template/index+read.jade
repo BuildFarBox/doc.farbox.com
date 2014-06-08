@@ -1,39 +1,21 @@
 doctype html
-head
-	title= post.title or site.title
-	load('/template/stylesheets/basic.css /template/stylesheets/main.scss')
-body
-	docs_path = 'docs/'
-	{% from 'mixins' import no_cache_sidebar %}
-	{{ no_cache_sidebar(docs_path) }}
-	#main
-		.content_body 
-			if request.args.s
-				h1 Results
-				posts = get_data(type='post', path=docs_path, keywords=request.args.s, sort='position', limit=50)
-				if posts
-					ul.posts_found
-						for post in posts
-							li
-								a(href='/read/{{post.url_path}}')= post.title
-				else
-					p Nothing Found
-			elif request.path == '/'
-				index_doc = get_doc(docs_path)
-				if index_doc and index_doc.content
-					{{ index_doc.content }}
-				else
-					p use <code>index.md</code> for your homepage.
-			else
-				post = post or category
-				if post
-					h1.title= post.title
-					post.content.without_toc
-				else
-					raise_404
-	script(type="text/javascript")
-		function search(){
-            if (document.getElementById('search_value').value){ location.href='http://'+location.host+'?s='+document.getElementById('search_value').value}
-            else{ return false;}
-        }
-        window.onload = function(){ window.scroll(0, 0); }
+client_lang = request.args.lang or lang
+lang_docs_path = 'docs-%s/'%client_lang
+docs_path = 'docs/' if not has(lang_docs_path) else lang_docs_path
+post = get_data(url_path=path2, path=docs_path)
+
+if request.args._pjax
+	head
+		title= post.title or site.title
+	body
+		include body.jade
+else
+	head
+		title= post.title or site.title
+		load('/template/stylesheets/basic.css /template/stylesheets/main.scss')
+	body
+		{% from 'mixins' import make_sidebar %}
+		+make_sidebar(docs_path)
+		#main
+			include body.jade
+		load('jquery#1.8.2 /template/scripts/history.js /template/scripts/main.coffee')

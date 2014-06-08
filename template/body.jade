@@ -1,0 +1,30 @@
+.content_body
+    if request.args.s
+        h1 Results
+        posts = get_data(type='post', path=docs_path, keywords=request.args.s, sort='position', limit=50)
+        if posts
+            ul.posts_found
+                for post in posts
+                    li
+						if request.args.lang
+                        	a(href='/read/{{post.url_path}}?lang={{request.args.lang}}')= post.title
+						else
+							a(href='/read/{{post.url_path}}')= post.title
+        else
+            p Nothing Found
+    elif request.path == '/'
+        index_doc = get_doc(docs_path)
+        if index_doc and index_doc.content
+            {{ index_doc.content }}
+        else
+            p use <code>index.md</code> for your homepage.
+    else
+        if not post
+            category_path = docs_path+path2
+            post = get_doc(category_path)
+        if post
+            h1.title= post.title
+			.doc_post= post.content.without_toc
+			include include/comments.jade
+        else
+            +raise_404()

@@ -1,4 +1,5 @@
-mixin no_cache_sidebar(docs_path)
+mixin make_sidebar(docs_path)
+	read_prefix = '/read/'
 	#sidebar
 		index_posts = get_data(types='post+folder', path=docs_path, min_posts_count=1, level=1, sort='position', limit=100)
 		ul
@@ -6,22 +7,26 @@ mixin no_cache_sidebar(docs_path)
 				loop1 = loop
 				if i_post.type == 'folder'
 					if i_post.content
-						li.level_1.directory= a_with_selected('/read/'+i_post.path, i_post.title)
+						li.level_1.directory= a_with_selected(read_prefix+i_post.path, i_post.title)
 					else
-						li.level_1.directory
+						li.level_1.directory.not_valid_directory
 							a(href='#')= i_post.title
 					sub_posts = get_data(type='post', path=i_post.path, sort='position', limit=100)
 					ul
 						for sub_post in sub_posts
 							li.level_2
 								dom_id = 'item-%s-%s'%(loop1.index, loop.index)
-								_sub_post_url = '/read/'+sub_post.url_path
-								sub_post_url = _sub_post_url+'#'+dom_id
+								sub_post_url = read_prefix+sub_post.url_path
+								if request.args.lang
+									sub_post_url = '%s?lang=%s' % (sub_post_url, request.args.lang)
 								a_with_selected(sub_post_url, sub_post.title, dom_id=dom_id)
-								if request.path == _sub_post_url and post and post.metadata.toc in [True, 'yes']
-									.toc= post.toc
+								if sub_post.metadata.toc in [True, 'yes']
+									if request.path == sub_post_url
+										.toc= sub_post.toc
+									else
+										.toc.hidden= sub_post.toc
 				else
 					li.level_1.file
-						a_with_selected('/read/'+post.url_path, post.title)
+						a_with_selected(read_prefix+post.url_path, post.title)
 	#search_bar
 		input#search_value(placeholder="Search", type="text", value="{{ request.args.s }}", onkeyup="if (event.keyCode == 13) search();")
